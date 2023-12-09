@@ -20,6 +20,15 @@ public class Node : MonoBehaviour
 
     BuildManager buildManager;
 
+    public Shader shader;
+    public Color pallete = Color.white;
+    public Material material = null;
+
+    private void Awake()
+    {
+        rend = GetComponent<Renderer>();
+    }
+
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -123,16 +132,55 @@ public class Node : MonoBehaviour
     {
         rend.material.color = startColor;
     }
+    public void ChangeColor(string i)
+    {
+        if (rend == null)
+        {
+            rend = GetComponent<Renderer>();
+        }
+
+        switch (i)
+        {
+            case "Black":
+                rend.material.color = Color.black;
+                break;
+
+            case "White":
+                rend.material.color = Color.white;
+                break;
+
+            case "Gray":
+                rend.material.color = Color.gray;
+                break;
+
+            case "Red":
+                rend.material.color = Color.red;
+                break;
+
+            case "Blue":
+                rend.material.color = Color.blue;
+                break;
+
+            case "Green":
+                rend.sharedMaterial.color = Color.green;
+                break;
+        }
+    }
+}
+
+enum Colors
+{
+    White, Grey, Black, Blue, Green, Red, Yellow
 }
 
 // The script attached to the object you want to modify
 public class MyObject : MonoBehaviour
 {
-    public void ChangeColor()
-    {
-        Renderer renderer = GetComponent<Renderer>();
+    //public void ChangeColor()
+    //{
+    //    Renderer renderer = GetComponent<Renderer>();
 
-        // Change the color to a random color
-        renderer.material.color = Random.ColorHSV();
-    }
+    //    // Change the color to a random color
+    //    renderer.material.color = Random.ColorHSV();
+    //}
 }
